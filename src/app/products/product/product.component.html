@@ -1,0 +1,9 @@
+<ul [ngClass]="{'unavailable': product.isAvailable == false }">
+  <li>Name: {{product.name}}</li>
+  <li>Description: {{product.description}}</li>
+  <li>price: {{product.price}}</li>
+  <li>category: {{product.category}}</li>
+  <li *ngIf="product.isAvailable == false">SOLD</li>
+</ul>
+<button [ngStyle]="{'background-color' : product.price < 10 ? 'green' : 'red' }" 
+(click)="addToCart(product.id, product.name, product.price)">Add to Cart</button>

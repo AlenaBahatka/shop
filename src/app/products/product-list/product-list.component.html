@@ -1,0 +1,8 @@
+<p>
+  product-list
+</p>
+<div class="panel-body">
+    <div *ngFor="let product of productList">
+      <app-product [product] = "product"></app-product>
+    </div>
+</div>

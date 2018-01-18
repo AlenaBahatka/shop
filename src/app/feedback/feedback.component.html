@@ -1,0 +1,6 @@
+<p>
+  Please leave us a feedback
+</p>
+<p (mouseout)="onMouse($event)" #commentP>{{comment}}</p>
+<input type="text" [(ngModel)]="comment" />
+<button (click)="onClick()">Send Feedback</button>
