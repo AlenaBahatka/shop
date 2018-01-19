@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
-##Task 2
+## Task 2
 `additional: ` Добавлено input поле для feedback. two-way binding. background комментария меняет цвет при mouseevent. send comment логирует это сообщение в консоль
 1. Создать приложение Angular (интернет магазин), которое состоит из двух или более модулей (AppModule, CartModule, ProductsModule, OrdersModule, ...), используя Angular-CLI
 2. Содать или модифицировать компонент, который отображает список товаров (ProductListComponent). 
