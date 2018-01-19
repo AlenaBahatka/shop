@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, HostListener, Output, EventEmitter } from '@angular/core';
 import { CartItem } from './cart-item.model';
 
 @Component({
@@ -8,6 +8,10 @@ import { CartItem } from './cart-item.model';
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
+  @Output() delete = new EventEmitter();
+
+  @HostBinding('class')
+  attrClass = 'cartItemClass';
 
   constructor() { }
 
@@ -22,5 +26,20 @@ export class CartItemComponent implements OnInit {
     if (this.cartItem.quantity > 0) {
       this.cartItem.quantity--;
     }
+  }
+
+  onDelete() {
+    console.log('Deleted');
+    this.delete.emit(this.cartItem);
+  }
+
+  @HostListener('mouseenter', ['$event'])
+  enter(event: Event) {
+    this.attrClass = 'cartItemClassDecorated';
+  }
+
+  @HostListener('mouseleave', ['$event'])
+  leave(event: Event) {
+    this.attrClass = 'cartItemClass';
   }
 }

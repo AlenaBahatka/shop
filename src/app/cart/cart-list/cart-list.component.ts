@@ -31,6 +31,10 @@ export class CartListComponent implements OnInit, OnDestroy {
       });
   }
 
+  onCartItemDelete(cartItem) {
+    this.cartService.deleteFromCartedProducts(cartItem.id);
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

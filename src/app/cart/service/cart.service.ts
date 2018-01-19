@@ -6,17 +6,17 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class CartService {
-  // Observable string sources
-  private channel = new Subject<any>();
-
-  // Observable string streams
-  public channel$ = this.channel.asObservable();
   cartedProducts: Array<CartItem>;
   numberOfCartedItems: number;
   summ: number;
 
+  // Observable string sources
+  private channel = new Subject<any>();
+  // Observable string streams
+  public channel$ = this.channel.asObservable();
+
   constructor() {
-    this.cartedProducts = [new CartItem(112, 'Gift', 1)];
+    this.cartedProducts = [new CartItem(112, 'Gift', 0, 1)];
     this.summ = 0;
     this.numberOfCartedItems = 1;
   }
@@ -31,7 +31,6 @@ export class CartService {
   getSumm() {
     return this.summ;
   }
-
 
   addToCart(productId: number, productName: string, productPrice: number) {
     this.addToCartedProducts(productId, productName, productPrice);
@@ -48,7 +47,6 @@ export class CartService {
     let summ = 0;
     let number = 0;
     this.cartedProducts.forEach(product => {
-      console.log(product);
       summ += product.price * product.quantity;
       number += product.quantity;
     });
@@ -68,4 +66,26 @@ export class CartService {
       this.cartedProducts.unshift(new CartItem(productId, productName, productPrice, 1));
     }
   }
+
+  deleteFromCartedProducts(cartItem) {
+    let indexOf;
+    let summ;
+    let quantity;
+    this.cartedProducts.forEach((product, index) => {
+      if (cartItem === product.id) {
+        indexOf = index;
+        summ = product.price * product.quantity;
+        quantity = product.quantity;
+      }
+    });
+    this.cartedProducts.splice(indexOf, 1);
+    this.summ -= summ;
+    this.numberOfCartedItems -= quantity;
+    this.channel.next({
+      'cartedProducts': this.cartedProducts,
+      'numberOfCartedItems': this.numberOfCartedItems,
+      'summ': this.summ
+    });
+  }
+
 }

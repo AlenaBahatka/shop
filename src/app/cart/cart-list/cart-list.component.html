@@ -3,9 +3,11 @@
 </p>
 <div class="panel-body">
   <div *ngFor="let cartItem of cartList">
-    <app-cart-item #counter [cartItem] = "cartItem"></app-cart-item>
-    <button (click)="counter.increment()">+</button>
-    <button (click)="counter.decrement()">-</button>
+    <app-cart-item (delete)="onCartItemDelete($event)" #counter [cartItem] = "cartItem"></app-cart-item>
+    <div>
+      <button (click)="counter.increment()">+</button>
+      <button (click)="counter.decrement()">-</button>
+    </div>
   </div>
 </div>
 <div>

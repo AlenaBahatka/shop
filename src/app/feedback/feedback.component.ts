@@ -17,7 +17,7 @@ export class FeedbackComponent implements OnInit {
   }
 
   onClick() {
-    console.log(this.commentP.nativeElement.textContent);
+    console.log('Thanks for your comment = ' + this.commentP.nativeElement.textContent);
   }
 
   onMouse(event: any) {
