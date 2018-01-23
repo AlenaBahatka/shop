@@ -6,9 +6,9 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class CartService {
-  cartedProducts: Array<CartItem>;
-  numberOfCartedItems: number;
-  summ: number;
+  cartedProducts: Array<CartItem>; // products that were added to cart
+  numberOfCartedItems: number; // number of all products in cart
+  summ: number; // summ of all products in cart
 
   // Observable string sources
   private channel = new Subject<any>();
@@ -16,6 +16,7 @@ export class CartService {
   public channel$ = this.channel.asObservable();
 
   constructor() {
+    // let user always has one item in cart (gift)
     this.cartedProducts = [new CartItem(112, 'Gift', 0, 1)];
     this.summ = 0;
     this.numberOfCartedItems = 1;
@@ -32,8 +33,19 @@ export class CartService {
     return this.summ;
   }
 
-  addToCart(productId: number, productName: string, productPrice: number) {
-    this.addToCartedProducts(productId, productName, productPrice);
+  addToCart(productId: number, productName: string, productPrice: number, quanity?: number) {
+    this.addToCartedProducts(productId, productName, productPrice, quanity);
+    this.updateNumAndSumm();
+  }
+
+  // delete product from cart
+  deleteFromCart(cartItem) {
+    this.deleteFromCartedProducts(cartItem);
+
+    this.updateNumAndSumm();
+  }
+
+  private updateNumAndSumm() {
     this.calcNumAndSumm();
     this.channel.next({
       'cartedProducts': this.cartedProducts,
@@ -42,8 +54,7 @@ export class CartService {
     });
   }
 
-  calcNumAndSumm() {
-    console.log(this.cartedProducts);
+  private calcNumAndSumm() {
     let summ = 0;
     let number = 0;
     this.cartedProducts.forEach(product => {
@@ -54,38 +65,29 @@ export class CartService {
     this.numberOfCartedItems = number;
   }
 
-  addToCartedProducts(productId: number, productName: string, productPrice: number) {
+  // add to cart product. can pass quantity but by default it is 1
+  private addToCartedProducts(productId: number, productName: string, productPrice: number, productQuantity: number = 1) {
     let isAdded = false;
     this.cartedProducts.forEach(product => {
+        // check if cart has already such product
         if (productId === product.id) {
-            product.quantity++;
+            product.quantity += productQuantity;
             isAdded = true;
         }
     });
-    if (!isAdded) {
-      this.cartedProducts.unshift(new CartItem(productId, productName, productPrice, 1));
+    if (!isAdded) { // if it is new product add to carted products as new product
+      this.cartedProducts.unshift(new CartItem(productId, productName, productPrice, productQuantity));
     }
   }
 
-  deleteFromCartedProducts(cartItem) {
+  // delete product from carted
+  private deleteFromCartedProducts(cartItem) {
     let indexOf;
-    let summ;
-    let quantity;
     this.cartedProducts.forEach((product, index) => {
       if (cartItem === product.id) {
         indexOf = index;
-        summ = product.price * product.quantity;
-        quantity = product.quantity;
       }
     });
     this.cartedProducts.splice(indexOf, 1);
-    this.summ -= summ;
-    this.numberOfCartedItems -= quantity;
-    this.channel.next({
-      'cartedProducts': this.cartedProducts,
-      'numberOfCartedItems': this.numberOfCartedItems,
-      'summ': this.summ
-    });
   }
-
 }
