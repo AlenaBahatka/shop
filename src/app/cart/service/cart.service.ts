@@ -33,6 +33,7 @@ export class CartService {
     return this.summ;
   }
 
+  // add to cart
   addToCart(productId: number, productName: string, productPrice: number, quanity?: number) {
     this.addToCartedProducts(productId, productName, productPrice, quanity);
     this.updateNumAndSumm();
@@ -41,7 +42,23 @@ export class CartService {
   // delete product from cart
   deleteFromCart(cartItem) {
     this.deleteFromCartedProducts(cartItem);
+    this.updateNumAndSumm();
+  }
 
+  // clean all products from cart
+  cleanCart() {
+    this.cartedProducts.length = 0;
+    this.updateNumAndSumm();
+  }
+
+  // update quantity of product. if increase==true => quantity will be increased by one item
+  // else quantity will be decreased
+  updateProductQuantityInCart(productId: number, increase: boolean) {
+    this.cartedProducts.forEach(product => {
+      if (productId === product.id) {
+        increase ? product.quantity++ :  product.quantity--;
+      }
+    });
     this.updateNumAndSumm();
   }
 
@@ -80,11 +97,11 @@ export class CartService {
     }
   }
 
-  // delete product from carted
-  private deleteFromCartedProducts(cartItem) {
+  // delete product from carted products by id
+  private deleteFromCartedProducts(cartItemId) {
     let indexOf;
     this.cartedProducts.forEach((product, index) => {
-      if (cartItem === product.id) {
+      if (cartItemId === product.id) {
         indexOf = index;
       }
     });
