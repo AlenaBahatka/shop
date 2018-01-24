@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
-import { CartItem } from '../cart-item/cart-item.model';
-import { CartModule } from '../cart.module';
 import { Subject } from 'rxjs/Subject';
+
+import { CartItem } from '../cart/cart-item/cart-item.model';
 
 @Injectable()
 export class CartService {
