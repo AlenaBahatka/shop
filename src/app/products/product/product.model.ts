@@ -9,11 +9,5 @@ export class Product {
         public category?: Category,
         public isAvailable?: boolean,
         public equivalents?: string[]
-    ) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category || Category.all;
-    }
+    ) { }
 }
