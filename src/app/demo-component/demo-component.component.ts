@@ -13,7 +13,7 @@ const constInst = new ConstantsService();
   styleUrls: ['./demo-component.component.css'],
   providers: [
     { provide: ConstantsService, useValue: constInst },
-    { provide: Generator, useFactory:  GeneratorService(10), deps: [] }
+    { provide: Generator, useFactory:  GeneratorService(10) }
   ]
 })
 export class DemoComponentComponent implements OnInit {
