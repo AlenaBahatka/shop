@@ -9,7 +9,6 @@ import { CartModule } from './cart/cart.module';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { ConfigOptionsService } from './services/config-options.service';
-import { ConstantsService } from './services/constants.service';
 import { DemoComponentComponent } from './demo-component/demo-component.component';
 import { FontDirective } from './directive/font.directive';
 
