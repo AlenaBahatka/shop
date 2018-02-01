@@ -1,16 +1,23 @@
-<p>
-  Your cart:
-</p>
-<div class="panel-body">
-  <div *ngFor="let cartItem of cartList">
-    <app-cart-item (delete)="onCartItemDelete($event)" #counter [cartItem] = "cartItem"></app-cart-item>
-    <div>
-      <button (click)="counter.increment()">+</button>
-      <button (click)="counter.decrement()">-</button>
+<div class="panel panel-primary">
+  <div class="panel-heading">Your cart:</div>
+    
+
+  <div class="panel-body">
+      SortBy: <select #sortBy>
+          <option>name</option>
+          <option selected>price</option>
+          <option>amount</option>
+        </select>
+    <div *ngFor="let cartItem of (cartList | orderBy:sortBy.value)">
+      <app-cart-item (delete)="onCartItemDelete($event)" #counter [cartItem] = "cartItem"></app-cart-item>
+      <div>
+        <button (click)="counter.increment()">+</button>
+        <button (click)="counter.decrement()">-</button>
+      </div>
     </div>
   </div>
-</div>
-<div>
-  <div>Number: {{numberOfCartedItems}}</div>
-  <div>Summ: {{summ}}</div>
+  <div>
+    <div>Number: {{numberOfCartedItems}}</div>
+    <div>Summ: {{summ}}</div>
+  </div>
 </div>

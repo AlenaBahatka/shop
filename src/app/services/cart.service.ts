@@ -91,9 +91,12 @@ export class CartService {
             isAdded = true;
         }
     });
-    if (!isAdded) { // if it is new product add to carted products as new product
-      this.cartedProducts.unshift(new CartItem(productId, productName, productPrice, productQuantity));
-    }
+    // if (!isAdded) { // if it is new product add to carted products as new product
+    //   this.cartedProducts.unshift(new CartItem(productId, productName, productPrice, productQuantity));
+    // }
+    this.cartedProducts = !isAdded ?
+    this.cartedProducts.concat(new CartItem(productId, productName, productPrice, productQuantity)) :
+    [].concat(this.cartedProducts);
   }
 
   // delete product from carted products by id

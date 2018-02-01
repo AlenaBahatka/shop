@@ -30,7 +30,6 @@ export class CartItemComponent implements OnInit {
   }
 
   onDelete() {
-    console.log('Deleted');
     this.delete.emit(this.cartItem);
   }
 
