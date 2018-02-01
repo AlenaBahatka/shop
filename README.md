@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Task 1
 https://github.com/AlenaBahatka/angular5Training/tree/Task1
 
-## Task 2
+## Task 2 
 `additional: ` Добавлено input поле для feedback. two-way binding. background комментария меняет цвет при mouseevent. send comment логирует это сообщение в консоль
 1. Создать приложение Angular (интернет магазин), которое состоит из двух или более модулей (AppModule, CartModule, ProductsModule, OrdersModule, ...), используя Angular-CLI
 2. Содать или модифицировать компонент, который отображает список товаров (ProductListComponent). 
@@ -49,6 +49,31 @@ https://github.com/AlenaBahatka/angular5Training/tree/Task1
    Клик изменяет размер шрифта элемента, рамку или что-то другое на Ваше усмотрение. 
    Добавьте @Input() для директивы. Используйте ElementRef/Renderer2
 
+## Task 4 (Pipes) :bowtie:
+```
+1. Применение встроенных пайпов в приложении
+	- форматирование цены
+		*Добавлено на*: 
+			app\products\product\product.component.html
+			app\cart\cart-item\cart-item.component.html
+	- форматирование даты обновления
+			*Добавлено на*: 
+			app\products\product\product.component.html
+	- форматирование категории продукта и для текста кнопки в верхний регистр
+			*Добавлено на*: 
+			app\products\product\product.component.html
+
+2. Примененик async пайпа для отображения данных на странице 
+*Добавлено на*:
+app\products\product-list\product-list.component.html
+Promise - использовался для отображения списка продуктов. products.service имитирует работу и отдает данные через 2сек
+Observable - использовался для отображения количества уже доставленных товаров. (Новая переменная в компоненте списка)
+
+3. Создать пользовательский пайп OrderBy для сортировки массива объектов. Пайп принимает два параметра: 
+	поле в виде строки, по которому необходимо сортировать массив объектов
+	булевый флаг, который определяет порядок сортировки. По умолчанию сортировка по убыванию.
+Применить его в Вашем приложении для сортировки товаров корзины, реализовать возмомность сортировать массив товаров по цене, количеству, названию.
+```
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

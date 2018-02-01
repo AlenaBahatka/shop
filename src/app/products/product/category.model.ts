@@ -1,6 +1,6 @@
 export enum Category {
-    health = 'HEALTH',
-    cloths = 'CLOTHS',
+    health = 'health',
+    cloths = 'cloths',
     kitchen = 'KITCHEN',
     all = 'ALL'
 }

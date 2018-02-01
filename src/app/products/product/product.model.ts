@@ -8,6 +8,7 @@ export class Product {
         public price: number,
         public category?: Category,
         public isAvailable?: boolean,
-        public equivalents?: string[]
+        public equivalents?: string[],
+        public lastUpdate?: Date
     ) { }
 }

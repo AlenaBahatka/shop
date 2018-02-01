@@ -7,4 +7,6 @@
     border: 4px solid rgb(117, 85, 85);
     background: rgb(244, 248, 14);
 }
-
+a:hover {
+    cursor:pointer;
+}
