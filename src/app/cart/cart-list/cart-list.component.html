@@ -8,7 +8,7 @@
           <option selected>price</option>
           <option>amount</option>
         </select>
-        Asc: <input #descAsc id="descAsc" type="checkbox" >
+        Asc: <input #descAsc id="descAsc" type="checkbox" (change)="0">
     <div *ngFor="let cartItem of (cartList | orderBy:sortBy.value:descAsc.checked)">
       <app-cart-item (delete)="onCartItemDelete($event)" #counter [cartItem] = "cartItem"></app-cart-item>
       <div>
