@@ -1,30 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { AppRoutingModule, appRouterComponents } from './app.routing.module';
 
 import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
-import { FeedbackComponent } from './feedback/feedback.component';
-import { LocalStorageService } from './services/local-storage.service';
-import { ConfigOptionsService } from './services/config-options.service';
-import { DemoComponentComponent } from './demo-component/demo-component.component';
-import { FontDirective } from './directive/font.directive';
-
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FeedbackComponent,
-    DemoComponentComponent,
-    FontDirective
+    appRouterComponents
   ],
   imports: [
-    BrowserModule, ProductsModule, CartModule, FormsModule
+    BrowserModule, FormsModule, ProductsModule, CartModule, AppRoutingModule, AdminModule
   ],
-  providers: [LocalStorageService, ConfigOptionsService
+  providers: [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(router: Router) {
+    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+  }
+}

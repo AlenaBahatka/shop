@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { CartItemComponent } from './cart-item/cart-item.component';
-import { CartListComponent } from './cart-list/cart-list.component';
-import { CartService } from '../services/cart.service';
+import { CartListComponent, CartItemComponent, CartComponent } from '.';
 import { OrderByPipe } from './order-by.pipe';
+import { CartService } from './services/cart.service';
+import { CartRoutingModule, cartRouterComponents } from './cart.routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    CartRoutingModule
   ],
-  declarations: [CartItemComponent, CartListComponent, OrderByPipe],
+  declarations: [cartRouterComponents, CartItemComponent, CartListComponent, OrderByPipe, CartComponent],
   providers: [CartService],
   exports: [
     CartListComponent

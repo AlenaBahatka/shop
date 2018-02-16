@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-
-import { CartItem } from '../cart/cart-item/cart-item.model';
+import { CartItem } from '../models/cart-item.model';
 
 @Injectable()
 export class CartService {
@@ -36,6 +35,7 @@ export class CartService {
   addToCart(productId: number, productName: string, productPrice: number, quanity?: number) {
     this.addToCartedProducts(productId, productName, productPrice, quanity);
     this.updateNumAndSumm();
+    console.log('Item was added to the Cart', this.cartedProducts);
   }
 
   // delete product from cart
@@ -95,8 +95,8 @@ export class CartService {
     //   this.cartedProducts.unshift(new CartItem(productId, productName, productPrice, productQuantity));
     // }
     this.cartedProducts = !isAdded ?
-    this.cartedProducts.concat(new CartItem(productId, productName, productPrice, productQuantity)) :
-    [].concat(this.cartedProducts);
+        this.cartedProducts.concat(new CartItem(productId, productName, productPrice, productQuantity)) :
+        [].concat(this.cartedProducts);
   }
 
   // delete product from carted products by id

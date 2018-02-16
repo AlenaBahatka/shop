@@ -1,8 +1,12 @@
-<div>
-  <ul>
-    <li>Name: {{cartItem.name}}</li>
-    <li>Quantity: {{cartItem.quantity}}</li>
-    <li>Price per one: {{cartItem.price | currency:'EUR'}}
-  </ul>
-  <a class="delete" (click)="onDelete()">remove</a>
-</div>
+<div class="panel panel-default">
+    <div class="panel-heading">User</div>
+    <div class="panel-body">
+        <ul>
+            <li>Name: {{cartItem.name}}</li>
+            <li>Quantity: {{cartItem.quantity}}</li>
+            <li>Price per one: {{cartItem.price | currency:'EUR'}}
+          </ul>
+          <a class="delete" (click)="onDelete()">remove</a>
+    </div>
+  </div>
+  

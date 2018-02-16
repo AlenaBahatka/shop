@@ -1,11 +1,11 @@
 <div class="panel panel-primary">
   <div class="panel-heading">product-list</div>
   <div class="panel-body">
-    <div>
+    <!--<div>
       <b>  {{productsDeliveredObservable | async}} </b> <i>products were delivered to our customers today</i>
-    </div>
+    </div> -->
     <div *ngFor="let product of productListPromise | async">
-      <app-product [product] = "product "></app-product>
+      <app-product [product] = "product" (edit)="editProduct($event)"></app-product>
     </div>
   </div>
 </div>

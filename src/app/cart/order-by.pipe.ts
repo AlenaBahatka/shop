@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CartItem } from './cart-item/cart-item.model';
+import { CartItem } from './models/cart-item.model';
 
 @Pipe({
   name: 'orderBy'
@@ -7,9 +7,6 @@ import { CartItem } from './cart-item/cart-item.model';
 export class OrderByPipe implements PipeTransform {
 
   transform(value: Array<CartItem>, sortBy: string, descAsc: boolean): any {
-    console.log(value)
-    console.log(sortBy)
-    console.log(descAsc)
     switch (sortBy) {
       case 'name':
         return  value.sort(this.compareValues('price', descAsc));

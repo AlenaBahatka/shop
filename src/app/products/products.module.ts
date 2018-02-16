@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { ProductComponent } from './product/product.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductService } from '../services/products.service';
+import { ProductListComponent, ProductComponent, ProductFormComponent, ProductArrayService } from '.';
+import { ProductsRoutingModule } from './products.routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ProductsRoutingModule
   ],
-  declarations: [ProductComponent, ProductListComponent],
-  providers: [ProductService],
+  declarations: [ProductComponent, ProductListComponent, ProductFormComponent],
+  providers: [ProductArrayService],
   exports: [
     ProductListComponent
   ]

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
-import { CartItem } from '../cart-item/cart-item.model';
 import { CartItemComponent } from '../cart-item/cart-item.component';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../services/cart.service';
+import { CartItem } from '../models/cart-item.model';
 
 @Component({
   selector: 'app-cart-list',

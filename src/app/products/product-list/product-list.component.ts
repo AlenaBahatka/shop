@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 
-import { Product } from '../product/product.model';
-import { ProductService } from '../../services/products.service';
+import { Product } from '../model/product.model';
+import { ProductArrayService } from '..';
 
 
 @Component({
-  selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -19,11 +19,19 @@ export class ProductListComponent implements OnInit {
 
   private productDelivered = 2;
 
-  constructor(public productService: ProductService) { }
+  constructor(
+    public router: Router,
+    public productService: ProductArrayService
+  ) { }
 
   ngOnInit() {
     this.productListPromise = this.productService.getProducts();
     this.productsDeliveredObservable = this.getProductsDeliveredObservable();
+  }
+
+  public editProduct(product: Product) {
+    const link = ['/edit', product.id];
+    this.router.navigate(link);
   }
 
   private getProductsDeliveredObservable () {

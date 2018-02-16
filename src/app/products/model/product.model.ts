@@ -10,5 +10,9 @@ export class Product {
         public isAvailable?: boolean,
         public equivalents?: string[],
         public lastUpdate?: Date
-    ) { }
+    ) {
+        this.category = category || Category.all;
+        this.equivalents = equivalents || [];
+        this.lastUpdate = lastUpdate || new Date();
+    }
 }

@@ -6,8 +6,6 @@ export class CartItem {
         public price?: number,
         public quantity?: number,
     ) {
-        this.id = id;
-        this.name = name;
         this.price = price || 0;
         this.quantity = quantity || 1;
     }
