@@ -8,12 +8,18 @@
 </div>
 -->
 <div class="container">
-    <router-outlet
-             (activate)='onActivate($event)'
-             (deactivate)='onDeactivate($event)'>
-    </router-outlet>
-    <!-- Routed views go here -->
+        <div class="col-md-10">
+            <router-outlet
+                (activate)='onActivate($event)'
+                (deactivate)='onDeactivate($event)'>
+            </router-outlet>
+            <!-- Routed views go here -->
+        </div>
+       <!-- <div class="col-md-2">
+            <router-outlet name="popup"></router-outlet>
+        </div> -->
 </div>
+
 
 <div>
     <div>
@@ -35,7 +41,7 @@
                         <a routerLink="/login">Login</a>
                     </li>                               
                     <li routerLinkActive="active">
-                    <a routerLink="/about" >About</a>
+                    <a routerLink="/feedback" >Feedback</a>
                     </li>
                 </ul>
                 </div>

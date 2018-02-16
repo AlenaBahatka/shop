@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FeedbackService } from '../../core/services';
 
 @Component({
   selector: 'app-feedback',
@@ -11,13 +12,17 @@ export class FeedbackComponent implements OnInit {
   @ViewChild('commentP')
   commentP: ElementRef;
 
-  constructor() { }
+  constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit() {
   }
 
   onClick() {
-    console.log('Thanks for your comment = ' + this.commentP.nativeElement.textContent);
+    const feed = this.commentP.nativeElement.textContent;
+    console.log('Thanks for your comment = ' + feed);
+    this.feedbackService.addFeedback(feed);
+    alert ('Thanks. Feedback was sent');
+    this.comment = '';
   }
 
   onMouse(event: any) {

@@ -37,7 +37,7 @@ export class ProductFormComponent implements OnInit {
 
   saveProduct() {
     const product = {...this.product};
-
+    console.log('SAVE PRODUCT');
     if (product.id) {
       this.productArrayService.updateProduct(product);
     } else {

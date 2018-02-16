@@ -1,0 +1,35 @@
+<h2>LOGIN</h2>
+<p>Now you are: {{message}}</p>
+<div class="panel panel-default">
+  <div  *ngIf="!authService.isLoggedIn">
+    <div class="panel-heading">
+        <h4 class="pannel-title">
+            Please register as admin
+        </h4>
+    </div>
+    <div class="panel-body">
+        <form   (ngSubmit)="login()" id="login-form" #form="ngForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text"
+                class="form-control"
+                id="name" name="name"
+                placeholder="Name"
+                required
+                [(ngModel)]="loginName">
+          </div>
+          <button
+              type="submit"
+              class="btn btn-primary"
+              form="login-form"
+              [disabled]="form.invalid" >Login
+          </button>
+        </form>
+        
+    </div>
+    </div>
+    <p>  
+        <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+      </p>
+  </div>
+  

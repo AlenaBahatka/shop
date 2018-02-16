@@ -7,7 +7,7 @@ import { AppRoutingModule, appRouterComponents } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
-import { AdminModule } from './admin/admin.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { AdminModule } from './admin/admin.module';
     appRouterComponents
   ],
   imports: [
-    BrowserModule, FormsModule, ProductsModule, CartModule, AppRoutingModule, AdminModule
+    BrowserModule, FormsModule, CoreModule, ProductsModule, CartModule, AppRoutingModule
   ],
   providers: [
   ],

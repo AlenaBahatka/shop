@@ -15,7 +15,6 @@ export class ProductArrayService {
 
   constructor() { }
 
-  // lets to get products from the server take 2sec
   getProducts(): Promise<Product[]> {
     return productsPromise;
   }

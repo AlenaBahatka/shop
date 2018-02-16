@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit {
     this.productsDeliveredObservable = this.getProductsDeliveredObservable();
   }
 
-  public editProduct(product: Product) {
+  public viewMore(product: Product) {
     const link = ['/edit', product.id];
     this.router.navigate(link);
   }

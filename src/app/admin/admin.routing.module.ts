@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './../core/guards/auth.guard';
 import { AdminComponent, AdminDashboardComponent, ManageProductsComponent} from '.';
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: '',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        //  componentless routing for guard here
+        //  componentless routing to guard here
         path: '',
         children: [
-          { path: 'products', component: ManageProductsComponent },
-          { path: '', component: AdminDashboardComponent }
+          { path: 'products', component: ManageProductsComponent }, // add product
+          { path: '', component: AdminDashboardComponent } // list of products
         ]
       }
     ]

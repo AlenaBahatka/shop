@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
     this.cartService.addToCart(productId, productName, productPrice);
   }
 
-  editProduct() {
+  viewMore() {
     this.edit.emit(this.product);
   }
 }
