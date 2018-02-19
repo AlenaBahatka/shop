@@ -1,8 +1,8 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { ConstantsService } from '../services/constants.service';
-import { LocalStorageService } from '../services/local-storage.service';
 import { ConfigOptionsService } from '../services/config-options.service';
 import { GeneratorService, Generator } from '../services/generator.factory';
+import { LocalStorageService } from '../core/services';
 
 // Demo-component to check that some new services work
 const constInst = new ConstantsService();

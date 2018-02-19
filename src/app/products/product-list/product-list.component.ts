@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 
 import { Product } from '../model/product.model';
-import { ProductArrayService } from '..';
+import { ProductArrayService } from '../services/product-array.service';
 
 
 @Component({

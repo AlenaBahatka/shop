@@ -6,8 +6,8 @@ import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 
 import { Product } from '../model/product.model';
-import { ProductArrayService } from '..';
 import { Category } from '../model/category.model';
+import { ProductArrayService } from '../services/product-array.service';
 
 @Component({
   templateUrl: './product-form.component.html',
