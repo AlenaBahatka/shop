@@ -2,7 +2,9 @@
   <div class="panel-heading">product-list</div>
   <div class="panel-body">
     <div *ngFor="let product of productListPromise | async">
-      <app-product [product] = "product" (edit)="viewMore($event)"></app-product>
+      <app-product [product] = "product" 
+      (edit)="viewMore($event)" 
+      (addProductToCart)="addToCart($event)"></app-product>
     </div>
   </div>
 </div>

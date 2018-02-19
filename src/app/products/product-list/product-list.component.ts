@@ -6,6 +6,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 
 import { Product } from '../model/product.model';
 import { ProductArrayService } from '../services/product-array.service';
+import { CartService } from '../../cart';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public productService: ProductArrayService
+    public productService: ProductArrayService,
+    public cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,10 @@ export class ProductListComponent implements OnInit {
   public viewMore(product: Product) {
     const link = ['/edit', product.id];
     this.router.navigate(link);
+  }
+
+  public addToCart (product: Product) {
+    this.cartService.addToCart(product.id, product.name, product.price);
   }
 
   private getProductsDeliveredObservable () {

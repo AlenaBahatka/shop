@@ -11,14 +11,16 @@ import { CartService } from '../../cart/services/cart.service';
 export class ProductComponent implements OnInit {
   @Input() product: Product;
 
+  @Output() addProductToCart = new EventEmitter<Product>();
+
   @Output() edit = new EventEmitter<Product>();
 
-  constructor(public cartService: CartService) { }
+  constructor() { }
 
   ngOnInit() {}
 
-  addToCart(productId: number, productName: string, productPrice: number) {
-    this.cartService.addToCart(productId, productName, productPrice);
+  addToCart() {
+    this.addProductToCart.emit(this.product);
   }
 
   viewMore() {
