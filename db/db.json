@@ -1,0 +1,69 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Shirt",
+      "description": "White colored",
+      "price": 8,
+      "category": "ALL",
+      "isAvailable": false,
+      "equivalents": [
+        "Cupper",
+        "Glass"
+      ],
+      "lastUpdate": "2018-01-12"
+    },
+    {
+      "id": 2,
+      "name": "Plate",
+      "description": "Wood",
+      "price": 80,
+      "category": "kitchen"
+    },
+    {
+      "id": 3,
+      "name": "Pants",
+      "description": "Girls/young woman",
+      "category": "cloth",
+      "price": 160
+    },
+    {
+      "id": 4,
+      "name": "Shirt",
+      "description": "White colored",
+      "price": 17
+    },
+    {
+      "id": 58,
+      "name": "цц",
+      "description": "цц",
+      "price": 12,
+      "category": "ALL",
+      "equivalents": [],
+      "lastUpdate": "2018-02-20T08:33:03.288Z"
+    },
+    {
+      "id": 87,
+      "name": "www",
+      "description": "www",
+      "price": 123,
+      "category": "ALL",
+      "equivalents": [],
+      "lastUpdate": "2018-02-21T04:38:59.073Z"
+    }
+  ],
+  "cartedProducts": [
+    {
+      "id": 42,
+      "name": "Gift",
+      "price": 0,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Plate",
+      "price": 80,
+      "quantity": 1
+    }
+  ]
+}

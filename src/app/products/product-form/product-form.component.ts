@@ -8,6 +8,7 @@ import { switchMap } from 'rxjs/operators';
 import { Product } from '../model/product.model';
 import { Category } from '../model/category.model';
 import { ProductArrayService } from '../services/product-array.service';
+import { ProductPromiseService } from '../services/product-promise.service';
 
 @Component({
   templateUrl: './product-form.component.html',
@@ -18,6 +19,7 @@ export class ProductFormComponent implements OnInit {
 
   constructor(
     private productArrayService: ProductArrayService,
+    private productPromiseService: ProductPromiseService,
     private location: Location,
     private route: ActivatedRoute
   ) { }
@@ -27,12 +29,15 @@ export class ProductFormComponent implements OnInit {
 
     this.route.paramMap
       .pipe(
-        switchMap((params: Params) => this.productArrayService.getProduct(+params.get('id'))))
+        // switchMap((params: Params) =>  this.productArrayService.getProduct(+params.get('id'))
+          switchMap((params: Params) =>  this.productPromiseService.getProduct(+params.get('id'))
+      ))
       .subscribe(
-        product => this.product = {...product},
+        product => {
+          Object.assign(this.product,  {...product});
+        },
         err => console.log(err)
     );
-
   }
 
   saveProduct() {

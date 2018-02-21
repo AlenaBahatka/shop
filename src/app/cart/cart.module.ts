@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { CartListComponent, CartItemComponent, CartComponent } from '.';
 import { OrderByPipe } from './order-by.pipe';
-import { CartService } from './services/cart.service';
+import { CartService, CartObservableService } from './services';
 import { CartRoutingModule, cartRouterComponents } from './cart.routing.module';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { CartRoutingModule, cartRouterComponents } from './cart.routing.module';
     CartRoutingModule
   ],
   declarations: [cartRouterComponents, CartItemComponent, CartListComponent, OrderByPipe, CartComponent],
-  providers: [CartService],
+  providers: [CartService, CartObservableService],
   exports: [
     CartListComponent
   ]

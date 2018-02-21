@@ -1,4 +1,4 @@
-export * from './services/product-array.service';
+export * from './services';
 
 export * from './product/product.component';
 export * from './product-form/product-form.component';

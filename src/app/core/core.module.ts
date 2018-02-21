@@ -4,6 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthService, FeedbackService, LocalStorageService } from './services';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { AppSetingsService } from './services/app-settings.service';
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   declarations: [LoginComponent],
-  providers: [AuthGuard, AuthService, LocalStorageService, FeedbackService]
+  providers: [AuthGuard, AuthService, LocalStorageService, FeedbackService, AppSetingsService]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

@@ -15,7 +15,6 @@ export class CartService {
 
   constructor() {
     // let user always has one item in cart (gift)
-    this.cartedProducts = [new CartItem(112, 'Gift', 0, 1)];
     this.summ = 0;
     this.numberOfCartedItems = 1;
   }
@@ -24,10 +23,14 @@ export class CartService {
     return this.cartedProducts;
   }
 
-  getNumberOfCartedItems() {
+  getNumberOfCartedItems(data) {
+    this.cartedProducts = data;
+    this.updateNumAndSumm();
     return this.numberOfCartedItems;
   }
-  getSumm() {
+  getSumm(data) {
+    this.cartedProducts = data;
+    this.updateNumAndSumm();
     return this.summ;
   }
 

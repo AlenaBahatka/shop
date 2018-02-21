@@ -5,6 +5,9 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 import { CartService } from '../services/cart.service';
 import { CartItem } from '../models/cart-item.model';
+import { CartObservableService } from '../services/';
+import { Data } from '@angular/router';
+import { Cart } from '../models/cart.model';
 
 @Component({
   selector: 'app-cart-list',
@@ -17,22 +20,29 @@ export class CartListComponent implements OnInit, OnDestroy {
   summ: number;
   sub: Subscription;
 
-  constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService,
+  public cartObservableService: CartObservableService) { }
 
   ngOnInit() {
-    this.cartList = this.cartService.getCartedItems();
-    this.numberOfCartedItems = this.cartService.getNumberOfCartedItems();
-    this.summ = this.cartService.getSumm();
-    this.sub = this.cartService.channel$.subscribe(
-      data => {
-        this.cartList = data.cartedProducts;
-        this.numberOfCartedItems = data.numberOfCartedItems;
-        this.summ = data.summ;
-      });
+    this.sub = this.cartObservableService.getCartedItems().subscribe(
+      (data: CartItem[]) => {
+        console.log('Get cart from db', data);
+        this.cartList = data;
+        this.numberOfCartedItems = this.cartService.getNumberOfCartedItems(data);
+        this.summ = this.cartService.getSumm(data);
+      }
+    );
   }
 
   onCartItemDelete(cartItem) {
-    this.cartService.deleteFromCart(cartItem.id);
+    // this.cartService.deleteFromCart(cartItem.id);
+    this.cartObservableService.deleteFromCart(cartItem).subscribe(
+      (data) => {
+        this.cartList = data;
+        this.numberOfCartedItems = this.cartService.getNumberOfCartedItems(data);
+        this.summ = this.cartService.getSumm(data);
+      }
+    ) ;
   }
 
   ngOnDestroy() {
