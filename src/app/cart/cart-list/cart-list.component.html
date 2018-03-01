@@ -1,15 +1,17 @@
 <div class="panel panel-primary">
   <div class="panel-heading">Your cart:</div>
     
+  <p *ngIf="(cartError$ | async) as errorMessage">{{errorMessage}}</p>
+  <p *ngIf="(cartError$ | async) as value" class="alert alert-danger">{{value}}</p>
 
-  <div class="panel-body" *ngIf="cartList">
+  <div class="panel-body" *ngIf="cartedItems$ | async">
       SortBy: <select #sortBy>
           <option>name</option>
           <option selected>price</option>
           <option>amount</option>
         </select>
         Asc: <input #descAsc id="descAsc" type="checkbox" (change)="0">
-    <div *ngFor="let cartItem of (cartList | orderBy:sortBy.value:descAsc.checked)">
+    <div *ngFor="let cartItem of (cartedItems$ | async | orderBy:sortBy.value:descAsc.checked)">
       <app-cart-item (delete)="onCartItemDelete($event)" #counter [cartItem] = "cartItem"></app-cart-item>
       <div>
         <button (click)="counter.increment()">+</button>

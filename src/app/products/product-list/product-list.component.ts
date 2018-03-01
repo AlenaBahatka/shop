@@ -1,62 +1,54 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
+// ngrx
+import { Store } from '@ngrx/store';
 
 import { Product } from '../model/product.model';
-import { ProductArrayService, ProductPromiseService } from '../services';
-import { CartService, CartObservableService } from '../../cart';
 import { CartItem } from '../../cart/models/cart-item.model';
-import { Subscription } from 'rxjs/Subscription';
-
+import { AppState, getProductsData, getProductsError } from '../../+store';
+import * as ProductsActions from './../../+store/actions/products.actions';
+import * as CartActions from './../../+store/actions/cart.actions';
+import * as RouterActions from './../../+store/actions/router.actions';
 
 @Component({
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit, OnDestroy {
+export class ProductListComponent implements OnInit {
   // use observable and promise to try async pipe in practice
-  productListPromise: Promise<Product[]>;
   productsDeliveredObservable: Observable<number>;
 
+  products$: Store<ReadonlyArray<Product>>;
+  productsError$: Store<Error | string>;
+
   private productDelivered = 2;
-  private sub: Subscription;
 
   constructor(
-    public router: Router,
-    public productService: ProductArrayService,
-    public productPromiseService: ProductPromiseService,
-    public cartService: CartService,
-    public cartObservableService: CartObservableService
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit() {
-    // this.productListPromise = this.productService.getProducts();
-    this.productListPromise = this.productPromiseService.getProducts();
-    this.productsDeliveredObservable = this.getProductsDeliveredObservable();
-  }
+    this.products$ = this.store.select(getProductsData);
+    this.productsError$ = this.store.select(getProductsError);
 
-  ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.store.dispatch(new ProductsActions.GetProducts());
+    this.productsDeliveredObservable = this.getProductsDeliveredObservable();
   }
 
   public viewMore(product: Product) {
     const link = ['/viewmore', product.id];
-    this.router.navigate(link);
+
+    this.store.dispatch(new RouterActions.Go({
+      path: link
+    }));
   }
 
   public addToCart (product: Product)  {
-    // this.cartService.addToCart(product.id, product.name, product.price);
-    this.sub = this.cartObservableService
-    .addToCart(new CartItem(product.id, product.name, product.price, 1)).subscribe(
-      (data) => {
-        console.log('Product was added to cart', data);
-      },
-      (error) => console.log(error)
-    );
+    this.store.dispatch(new CartActions.AddItemToCart
+      (new CartItem(product.id, product.name, product.price, 1)));
   }
 
   private getProductsDeliveredObservable () {

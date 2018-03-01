@@ -5,6 +5,7 @@
       </h4>
   </div>
   <div class="panel-body">
+    <p *ngIf="!product" class="alert alert-danger">some errors occured</p>
       <div *ngIf="product">
         <div>
           <label for="name">Name</label>

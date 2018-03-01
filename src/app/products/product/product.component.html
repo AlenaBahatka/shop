@@ -10,7 +10,8 @@
   <button class="btn" [ngStyle]="{'background-color' : product.isAvailable == false ? '#d3d3d3' : '#90EE90' }" 
   [disabled]="product.isAvailable == false"
   (click)="addToCart(product)" >{{'Add to Cart' | uppercase}}</button>
- 
+
   <button class="btn btn-warning"
   (click)="viewMore()">View more</button>
+
 </div>

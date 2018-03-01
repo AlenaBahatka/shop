@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot,
-  RouterStateSnapshot, Router, CanLoad, Route } from '@angular/router';
-
+  RouterStateSnapshot, CanLoad, Route } from '@angular/router';
 // rxjs
 import { Observable } from 'rxjs/Observable';
+// ngrx
+import { Store } from '@ngrx/store';
 
 import { AuthService } from './../services/auth.service';
+import { AppState } from '../../+store';
+import * as RouterActions from './../../+store/actions/router.actions';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private store: Store<AppState>
   ) {}
 
   canActivate(
@@ -35,7 +38,10 @@ export class AuthGuard implements CanActivate, CanLoad {
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
     // Navigate to the login page
-    this.router.navigate(['/login']);
+    this.store.dispatch(new RouterActions.Go({
+      path: ['/login']
+    }));
+
     return false;
   }
 }

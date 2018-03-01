@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+// ngrx
+import { Store } from '@ngrx/store';
+
 import { Product } from '../../products/model/product.model';
-import { ProductArrayService, ProductPromiseService } from '../../products';
+import { AppState } from '../../+store';
+import * as ProductsActions from './../../+store/actions/products.actions';
 
 @Component({
   selector: 'app-manage-products',
@@ -10,9 +14,7 @@ import { ProductArrayService, ProductPromiseService } from '../../products';
 export class ManageProductsComponent implements OnInit {
   product: Product;
 
-  constructor(private productArrayService: ProductArrayService,
-  private productPromiseService: ProductPromiseService
-  ) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.product = new Product(null, '', '', null);
@@ -22,9 +24,7 @@ export class ManageProductsComponent implements OnInit {
     console.log('SAVED PRODUCT');
     const product = {...this.product};
     product.id = Math.floor(Math.random() * 100) + 1; // generate id for product
-    // this.productArrayService.addProduct(product);
-    this.productPromiseService.addProduct(product);
+    this.store.dispatch(new ProductsActions.CreateProduct(product));
     alert('Product added');
-    this.product = new Product(null, '', '', null); // clean fields
   }
 }

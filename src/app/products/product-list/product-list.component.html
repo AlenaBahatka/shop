@@ -1,7 +1,8 @@
 <div class="panel panel-primary">
   <div class="panel-heading">product-list</div>
   <div class="panel-body">
-    <div *ngFor="let product of productListPromise | async">
+    <p *ngIf="(productsError$ | async) as value" class="alert alert-danger">{{value}}</p>
+    <div *ngFor="let product of (products$ | async)">
       <app-product [product] = "product" 
       (edit)="viewMore($event)" 
       (addProductToCart)="addToCart($event)"></app-product>
