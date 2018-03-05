@@ -2,12 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CartComponent, CartListComponent } from '.';
+import { ProcessOrderFormComponent } from './reactive-forms/process-order-form/process-order-form.component';
 
 const routes: Routes = [
     {
         path: 'cart',
         component: CartComponent,
         children: [
+            {
+                path: 'userdetails',
+                component: ProcessOrderFormComponent
+            },
         //   {
         //     path: 'add',
         //     component: UserFormComponent
@@ -24,7 +29,7 @@ const routes: Routes = [
     }
 ];
 
-export let cartRouterComponents = [CartComponent, CartListComponent];
+export let cartRouterComponents = [CartComponent, CartListComponent, ProcessOrderFormComponent];
 
 @NgModule({
   imports: [

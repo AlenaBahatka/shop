@@ -4,23 +4,34 @@
   <p *ngIf="(cartError$ | async) as errorMessage">{{errorMessage}}</p>
   <p *ngIf="(cartError$ | async) as value" class="alert alert-danger">{{value}}</p>
 
-  <div class="panel-body" *ngIf="cartedItems$ | async">
+  <div  *ngIf="cartedItems$ | async">
+
+    <div class="panel-body">
       SortBy: <select #sortBy>
           <option>name</option>
           <option selected>price</option>
           <option>amount</option>
         </select>
         Asc: <input #descAsc id="descAsc" type="checkbox" (change)="0">
-    <div *ngFor="let cartItem of (cartedItems$ | async | orderBy:sortBy.value:descAsc.checked)">
-      <app-cart-item (delete)="onCartItemDelete($event)" #counter [cartItem] = "cartItem"></app-cart-item>
-      <div>
-        <button (click)="counter.increment()">+</button>
-        <button (click)="counter.decrement()">-</button>
+      <div *ngFor="let cartItem of (cartedItems$ | async | orderBy:sortBy.value:descAsc.checked)">
+        <app-cart-item (delete)="onCartItemDelete($event)" #counter [cartItem] = "cartItem"></app-cart-item>
+        <div>
+          <button (click)="counter.increment()">+</button>
+          <button (click)="counter.decrement()">-</button>
+        </div>
       </div>
     </div>
+    <!-- TODO check and add working variables
+      <div>
+      <div>Number: {{numberOfCartedItems}}</div>
+      <div>Summ: {{summ}}</div>
+    </div> -->
+    <div >
+        <button type="button"   
+        class="btn  btn-warning"
+        (click)="nextStepUserDetails($event)" 
+        title="Add your personal info to complete">Next Step </button>
+    </div>
   </div>
-  <div>
-    <div>Number: {{numberOfCartedItems}}</div>
-    <div>Summ: {{summ}}</div>
-  </div>
+
 </div>

@@ -1,0 +1,126 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Fill your contact information: </div>
+    <div class="panel-body">
+
+    <form class="form-horizontal" (ngSubmit)="save()" [formGroup]="orderForm">
+        <fieldset>
+
+            <!-- name -->
+            <div class="form-group" [ngClass]="{'has-error': nameErrorMessage}">
+                <label class="col-md-2 control-label"
+                    for="nameId">Name (required)</label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                        id="nameId"
+                        type="text"
+                        placeholder="name"
+                        formControlName="name"/>
+                    <span class="help-block" *ngIf="nameErrorMessage">
+                            {{nameErrorMessage}}
+                    </span>
+                </div>
+            </div>
+
+
+            <!-- phone + abulity to add more phone numbers-->
+                <div formArrayName="phones" 
+                        *ngFor="let phone of phones.controls; let i = index">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"
+                            for="{{'phoneId' + i}}">Phone{{i+0}}  (required) 
+                            <button class="btn btn-link"
+                                type="button"
+                                (click)="deletePhone(i)">
+                                delete
+                            </button>
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                id="{{'phoneId' + i}}"
+                                type="tel"
+                                placeholder="+375291234332"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <button class="btn btn-primary"
+                                type="button"
+                                (click)="addPhone()">
+                        Add Another Phone
+                        </button>
+                    </div>
+                </div>
+
+            <!-- email -->
+            <div class="form-group" [ngClass]="{'has-error': emailErrorMessage}" >
+                <label class="col-md-2 control-label"
+                    for="emailId">Email  (required)</label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                        id="emailId"
+                        type="email"
+                        placeholder="email@sm.com"
+                        formControlName="email" />
+                        <span class="help-block" *ngIf="emailErrorMessage">
+                                {{emailErrorMessage}}
+                        </span>
+                </div>
+            </div>
+
+            <!-- delivery checkbox if want -->
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-8 checkbox" >
+                    <label>
+                        <input id="deliveryId"
+                            type="checkbox" 
+                            formControlName="delivery">
+                        Want delivery
+                    </label>
+                </div>
+            </div>
+
+            <!-- adress -->
+            <div *ngIf="orderForm.get('delivery').value">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Street, House, Room</label>
+                    <!-- street -->
+                    <div class="col-md-3">
+                        <select class="form-control"
+                            id="streetId"
+                            name="street"
+                            formControlName="street">
+                            <option value="">Choose street</option>
+                            <option *ngFor="let street of streets"
+                                value="{{street}}">{{street}}</option>
+                        </select>
+                    </div>
+                    <!-- house -->
+                    <div class="col-md-3">
+                        <input type="number"
+                            class="form-control"
+                            id="houseId"
+                            placeholder="№"
+                            formControlName="house">
+                    </div>
+                    <!-- room -->
+                    <div class="col-md-2">
+                        <input type="number"
+                                class="form-control"
+                                id="roomId"
+                                placeholder="№"
+                                formControlName="room">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- save button -->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" [disabled]="!orderForm.valid">Save</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>

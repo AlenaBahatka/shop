@@ -60,9 +60,7 @@ export function productsReducer(
         case ProductsActionTypes.CREATE_PRODUCT_SUCCESS: {
             console.log('CREATE_PRODUCT_SUCCESS action being handled!');
             const product = { ...<Product>action.payload };
-            return productAdapter.addOne(product, {
-                ...state
-            });
+            return productAdapter.addOne(product, state);
         }
 
         case ProductsActionTypes.CREATE_PRODUCT_ERROR: {

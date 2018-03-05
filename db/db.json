@@ -58,6 +58,12 @@
       "name": "Gift",
       "price": 0,
       "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Plate",
+      "price": 80,
+      "quantity": 1
     }
   ]
 }

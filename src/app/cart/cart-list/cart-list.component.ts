@@ -12,6 +12,7 @@ import { CartObservableService } from '../services/';
 import { Cart } from '../models/cart.model';
 import { AppState, getCartedItems, getCartError } from '../../+store';
 import * as CartActions from './../../+store/actions/cart.actions';
+import * as RouterActions from './../../+store/actions/router.actions';
 
 @Component({
   selector: 'app-cart-list',
@@ -55,5 +56,13 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
    // this.sub.unsubscribe();
+  }
+
+  private nextStepUserDetails () {
+    const link = ['cart/userdetails'];
+
+    this.store.dispatch(new RouterActions.Go({
+      path: link
+    }));
   }
 }
