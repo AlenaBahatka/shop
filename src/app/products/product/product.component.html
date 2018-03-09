@@ -7,11 +7,11 @@
     </ul> 
   </div>
 
-  <button class="btn" [ngStyle]="{'background-color' : product.isAvailable == false ? '#d3d3d3' : '#90EE90' }" 
+  <button id="addToCartButton" class="btn" [ngStyle]="{'background-color' : product.isAvailable == false ? '#d3d3d3' : '#90EE90' }" 
   [disabled]="product.isAvailable == false"
-  (click)="addToCart(product)" >{{'Add to Cart' | uppercase}}</button>
+  (click)="addToCart()" >{{'Add to Cart' | uppercase}}</button>
 
-  <button class="btn btn-warning"
+  <button id="viewMoreButton" class="btn btn-warning"
   (click)="viewMore()">View more</button>
 
 </div>

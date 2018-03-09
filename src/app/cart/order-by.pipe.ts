@@ -10,7 +10,6 @@ export class OrderByPipe implements PipeTransform {
     switch (sortBy) {
       case 'name':
         return  value.sort(this.compareValues('price', descAsc));
-
       case 'price':
         return value.sort(this.compareValues('price', descAsc));
       case 'amount':

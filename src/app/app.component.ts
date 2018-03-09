@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  shopTabName = 'Shop';
+  cartTabName = 'Cart';
+  adminTabName = 'Admin';
+  loginTabName = 'Login';
+  feedbackTabName = 'Feedback';
+
   onActivate($event) {
     console.log('Activated Component', $event);
   }

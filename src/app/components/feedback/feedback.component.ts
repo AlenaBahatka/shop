@@ -28,9 +28,9 @@ export class FeedbackComponent implements OnInit {
   onMouse(event: any) {
     event.target.style.background = this.getRandomColor();
   }
+
   getRandomColor () {
     const hex = Math.floor(Math.random() * 0xFFFFFF);
     return '#' + ('000000' + hex.toString(16)).substr(-6);
   }
-
 }
